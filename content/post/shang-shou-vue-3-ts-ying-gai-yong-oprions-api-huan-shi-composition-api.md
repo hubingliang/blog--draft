@@ -12,8 +12,7 @@ isTop: false
 
 [你可以在这找到本文提及到的源码](https://gist.github.com/lmiller1990/f12b847fc23592f25ab70b17074fe946)
 
-# The Component
-
+## The Component
 我将会重构一个显示新闻的组件，它是通过 render 函数编写的。但因为 Vue Test Utils 和 Jest 还没有支持 Vue3 组件。对于那些不熟悉 render 函数的人，我附上了生成好的 HTML。由于源代码很长，组件的基本思想是生成此标记：
 ```html
 <div>
@@ -58,7 +57,7 @@ describe('FilterPosts', () => {
 - 使用 TypeScript 来强化类型声明
 - 最重要的是，哪种 API 风格更加友好，以及JS和TS使用的利弊
 
-# Typing the `filter` type and Refactoring `Filter`
+## Typing the `filter` type and Refactoring `Filter`
 
 从最简单的组件开始是最容易理解的，筛选组件如下所示：
 
@@ -113,7 +112,7 @@ setup(props, ctx) {
 但其实当 Vetur 为 Vue3更新时，你实际上会在 `<template>` 中获得判断，这无疑是激动人心的。
 
 此时的测试用例依然可以通过，让我们继续重构`NewsPost`组件。
-# Typing the `post` type and `NewsPost`
+## Typing the `post` type and `NewsPost`
 
 NewsPost 组件看起来像这样：
 ```js
@@ -157,7 +156,7 @@ export const NewsPost = defineComponent({
 ```
 如果你在 VSCode 中打开这个组件，则会注意到 `props.post.title` 已经有了正确的类型定义。
 
-# Updating `FilterPosts`
+## Updating `FilterPosts`
 
 现在只剩下一个组件了 — `FilterPosts` 它看起来像这样：
 ```js
@@ -251,7 +250,7 @@ return () =>
 
 所有的测试都通过了，因此重构结束。
 
-# Discussion
+## Discussion
 
 一个重要的事情是，我们不需要为重构改变测试用例。这是因为测试着重于组件的行为，而不是实现细节。
 
@@ -260,7 +259,7 @@ return () =>
 - 我们应该用 Composition API 还是 Options API?
 - 我们应该用 JS还是 TS?
 
-# Composition API vs Options API
+## Composition API vs Options API
 
 这其实是Vue2到Vue3的最大变化，尽管你可以在Vue3使用 Options API，那是因为两者都存在。但是自然会引出一个问题，哪一个是解决问题的最好方法？或者哪一个适合我的项目？
 
@@ -268,7 +267,7 @@ return () =>
 
 但是话虽这么说，但是在使用 Options API 的时候很难充分利用 TypeScript 的全部功能，这是引用 Composition API 的原因之一。这是我要讨论的第二点。
 
-# Typescript vs JavaScript
+## Typescript vs JavaScript
 
 一开始我发现 TypeScript 的学习曲线并不友好，但是我真的很喜欢使用 TypeScript 来编写应用程序。它帮助我捕获很多错误，并且使事情更容易推断，如果你不知道一个对象有什么属性或者它们是否为空，只知道传入的 `prop` 是 `Object` 是没什么帮助的。
 
@@ -280,7 +279,7 @@ return () =>
 
 总而言之，我非常喜欢 TypeScript 和 Composition api，不是因为我因为它比 Options API 更直观或更简洁，而是因为它可以使我更有效地去利用 TypeScript。我认为 Options API 和 Composition API 都是构建 Vue.js 组件的适当方法。
 
-# Conclusion
+## Conclusion
 我演示并且讨论了：
 - 循序渐进的向常规 JavaScript 编写的组件添加类型
 - 好的测试用例只关注行为表现而不关注代码的实现细节
